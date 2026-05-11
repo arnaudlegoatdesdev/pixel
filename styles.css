@@ -667,7 +667,7 @@ h1 {
 
 @media (max-width: 680px) {
   body {
-    padding-bottom: 82px;
+    padding-bottom: 0;
   }
 
   .topbar {
@@ -693,38 +693,7 @@ h1 {
   }
 
   .mobile-nav {
-    position: fixed;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    z-index: 30;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 4px;
-    padding: 7px;
-    color: rgba(255, 255, 255, 0.82);
-    background: rgba(2, 7, 10, 0.9);
-    border: 1px solid rgba(183, 227, 232, 0.18);
-    border-radius: 8px;
-    box-shadow: 0 -14px 34px rgba(0, 0, 0, 0.32);
-    backdrop-filter: blur(18px);
-  }
-
-  .mobile-nav a {
-    min-height: 42px;
-    display: grid;
-    place-items: center;
-    padding: 0 6px;
-    border-radius: 6px;
-    font-size: 0.78rem;
-    font-weight: 750;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.045);
-  }
-
-  .mobile-nav a:hover {
-    color: var(--ink);
-    background: var(--cyan-bright);
+    display: none;
   }
 
   .section-band {
