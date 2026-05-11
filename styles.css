@@ -665,10 +665,13 @@ h1 {
   }
 
   .topbar {
+    left: 10px;
+    right: 10px;
     width: calc(100% - 20px);
     min-height: 62px;
     justify-content: center;
     padding: 10px;
+    transform: none;
   }
 
   .brand {
@@ -684,6 +687,8 @@ h1 {
     left: 10px;
     right: 10px;
     bottom: 10px;
+    z-index: 30;
+    width: auto;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 4px;
