@@ -56,11 +56,15 @@ const simulationGrid = document.querySelector(".simulation-grid");
 if (simulationGrid) {
   const COLS = 8;
   const ROWS = 4;
+  const phaseDenom = ROWS + COLS - 2;
   for (let i = 0; i < COLS * ROWS; i++) {
     const cell = document.createElement("button");
     cell.type = "button";
     cell.className = "sim-cell";
     cell.setAttribute("aria-label", `Pixel ${i + 1}`);
+    const r = Math.floor(i / COLS);
+    const c = i % COLS;
+    cell.style.setProperty("--phase", (r + c) / phaseDenom);
     simulationGrid.appendChild(cell);
   }
   const simCells = simulationGrid.querySelectorAll(".sim-cell");
