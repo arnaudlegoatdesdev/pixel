@@ -61,6 +61,7 @@
         <nav class="nav-links" aria-label="Sections du site">
           <a href="#concept">Concept</a>
           <a href="#fonctionnement">Fonctionnement</a>
+          <a href="#simulation">Simulation</a>
           <a href="#usages">Usages</a>
           <a href="#en-savoir-plus">En savoir plus</a>
           <a href="#contact">Contact</a>
@@ -70,6 +71,7 @@
       <nav class="mobile-nav" aria-label="Navigation mobile">
         <a href="#concept">Concept</a>
         <a href="#fonctionnement">Fonctionnement</a>
+        <a href="#simulation">Simulation</a>
         <a href="#usages">Usages</a>
         <a href="#en-savoir-plus">En savoir plus</a>
         <a href="#contact">Contact</a>
@@ -101,8 +103,11 @@
           <aside class="award-panel reveal" aria-label="Distinction Pix'el">
             <img class="award-badge" src="assets/concours-lepine-2024.png" alt="Invention en lice, Concours Lépine International Paris 2024">
             <p>Distinction majeure</p>
-            <strong>Prix Léonard de Vinci</strong>
-            <span>Décerné par Comexposium au Concours Lépine 2024, accompagné d'une Médaille d'or.</span>
+            <div class="award-tags">
+              <span class="award-tag">Médaille d'or</span>
+              <span class="award-tag">Prix Léonard de Vinci</span>
+            </div>
+            <span>Décernés par Comexposium au Concours Lépine 2024.</span>
           </aside>
         </section>
 
@@ -113,7 +118,7 @@
           </div>
           <div>
             <span>Prix</span>
-            <p>Léonard de Vinci, Comexposium</p>
+            <p>Léonard de Vinci & Médaille d'or</p>
           </div>
           <div>
             <span>Usage</span>
@@ -198,6 +203,44 @@
               <img src="assets/icon-wifi.png" alt="">
               <p>Plusieurs modes de fonctionnement commandables via une application Wi-Fi.</p>
             </article>
+          </div>
+        </section>
+
+        <section id="simulation" class="section-band dark-band simulation-section">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Simulation</p>
+            <h2>Composez votre propre surface thermique.</h2>
+            <p class="simulation-intro">Choisissez un mode, puis cliquez ou glissez sur les pixels pour activer des zones chaudes ou froides. Vous pouvez mélanger les deux sur la même surface.</p>
+          </div>
+          <div class="simulation-layout">
+            <div class="simulation-stage reveal">
+              <div class="simulation-grid" data-mode="hot" aria-label="Surface interactive Pix'el"></div>
+              <p class="simulation-hint">Astuce : cliquez ou maintenez et glissez pour peindre plusieurs pixels.</p>
+            </div>
+            <div class="simulation-side reveal">
+              <div class="simulation-modes" role="group" aria-label="Mode d'activation">
+                <button type="button" class="sim-mode is-active" data-mode="hot">
+                  <span class="sim-dot hot"></span>Chaud
+                </button>
+                <button type="button" class="sim-mode" data-mode="cold">
+                  <span class="sim-dot cold"></span>Froid
+                </button>
+                <button type="button" class="sim-mode" data-mode="erase">
+                  <span class="sim-dot off"></span>Effacer
+                </button>
+              </div>
+              <button type="button" class="sim-reset">Réinitialiser la surface</button>
+              <div class="simulation-explain">
+                <h3>Comment ça marche ?</h3>
+                <p>Chaque pixel est un module indépendant : il peut chauffer, refroidir, ou rester inactif. La surface s'adapte à votre besoin sans dépenser d'énergie pour les zones non utilisées.</p>
+                <ul>
+                  <li><span class="sim-dot hot"></span> Une zone chaude maintient un plat ou une tasse à bonne température.</li>
+                  <li><span class="sim-dot cold"></span> Une zone froide rafraîchit boissons, desserts et entrées.</li>
+                  <li><span class="sim-dot off"></span> Un pixel éteint ne consomme rien.</li>
+                </ul>
+                <p class="simulation-note">Sur un vrai Pix'el, la détection de présence active les zones automatiquement dès qu'un objet y est posé, et une application mobile permet de piloter la surface à distance. Les espaces entre les pixels sont aussi bien plus fins qu'ici.</p>
+              </div>
+            </div>
           </div>
         </section>
 
