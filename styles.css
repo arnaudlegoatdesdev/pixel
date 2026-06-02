@@ -574,7 +574,8 @@ h1 {
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.04);
   cursor: pointer;
-  transition: background 420ms ease, box-shadow 420ms ease, border-color 420ms ease, transform 120ms ease;
+  transition: background 420ms ease, border-color 420ms ease, transform 120ms ease;
+  animation-delay: calc(var(--phase, 0) * -2.6s);
 }
 
 .simulation-grid .sim-cell:hover {
@@ -582,16 +583,33 @@ h1 {
   transform: scale(1.04);
 }
 
+@keyframes sim-breathe-hot {
+  0%, 100% { opacity: 0.78; box-shadow: 0 0 4px 0 rgba(255, 40, 30, 0.55); }
+  50%      { opacity: 1; box-shadow: 0 0 12px 0 rgba(255, 40, 30, 0.55); }
+}
+
+@keyframes sim-breathe-cold {
+  0%, 100% { opacity: 0.55; box-shadow: 0 0 5px 0 rgba(0, 132, 255, 0.55); filter: brightness(1); }
+  50%      { opacity: 1; box-shadow: 0 0 18px 0 rgba(0, 132, 255, 0.55); filter: brightness(1.18); }
+}
+
 .simulation-grid .sim-cell.is-hot {
-  background: rgba(255, 40, 30, 0.92);
-  box-shadow: 0 0 24px rgba(255, 60, 30, 0.7);
+  background: #ff281e;
   border-color: rgba(255, 90, 60, 0.6);
+  animation: sim-breathe-hot 2.6s ease-in-out infinite;
 }
 
 .simulation-grid .sim-cell.is-cold {
-  background: rgba(0, 132, 255, 0.92);
-  box-shadow: 0 0 24px rgba(0, 132, 255, 0.7);
+  background: #0084ff;
   border-color: rgba(70, 160, 255, 0.6);
+  animation: sim-breathe-cold 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .simulation-grid .sim-cell.is-hot,
+  .simulation-grid .sim-cell.is-cold {
+    animation: none;
+  }
 }
 
 .simulation-hint {
