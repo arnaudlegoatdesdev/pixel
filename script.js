@@ -17,6 +17,31 @@ const revealObserver = new IntersectionObserver(
 
 revealItems.forEach((item) => revealObserver.observe(item));
 
+const heroPixels = document.querySelector(".hero-pixels");
+if (heroPixels) {
+  const hero = heroPixels.parentElement;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let idleTimer;
+
+  const fadeGrid = () => {
+    clearTimeout(idleTimer);
+    heroPixels.classList.remove("is-moving");
+  };
+
+  hero.addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse" || reducedMotion.matches) return;
+
+    const { left, top } = heroPixels.getBoundingClientRect();
+    heroPixels.style.setProperty("--pointer-x", `${event.clientX - left}px`);
+    heroPixels.style.setProperty("--pointer-y", `${event.clientY - top}px`);
+    heroPixels.classList.add("is-moving");
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(fadeGrid, 160);
+  });
+
+  hero.addEventListener("pointerleave", fadeGrid);
+}
+
 const thermalGrid = document.querySelector(".thermal-grid");
 if (thermalGrid) {
   const cells = thermalGrid.querySelectorAll("span");

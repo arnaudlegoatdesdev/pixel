@@ -164,6 +164,53 @@ a {
   background: radial-gradient(ellipse at 50% 34%, #0b1b26, #050d13 64%);
 }
 
+.hero-pixels {
+  --pixel-size: 44px;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-pixels::before,
+.hero-pixels::after {
+  --line-color: rgb(125 182 222 / 5%);
+  --line-width: 1px;
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--line-color) var(--line-width), transparent var(--line-width)),
+    linear-gradient(to bottom, var(--line-color) var(--line-width), transparent var(--line-width));
+  background-size: var(--pixel-size) var(--pixel-size);
+}
+
+.hero-pixels::before {
+  content: "";
+  mask-image: radial-gradient(ellipse at 50% 44%, rgb(0 0 0 / 20%), #000 72%);
+}
+
+@media (any-hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hero-pixels::after {
+    --line-width: 2px;
+    --reaction-radius: 110px;
+    content: "";
+    background-position: -0.5px -0.5px;
+    mask-image: radial-gradient(circle closest-side, #000, transparent);
+    mask-size: calc(2 * var(--reaction-radius)) calc(2 * var(--reaction-radius));
+    mask-repeat: no-repeat;
+    mask-position:
+      calc(var(--pointer-x, 0px) - var(--reaction-radius))
+      calc(var(--pointer-y, 0px) - var(--reaction-radius));
+    opacity: 0;
+    transition: mask-position 160ms ease-out, opacity 360ms ease-out;
+  }
+
+  .hero-pixels.is-moving::after {
+    opacity: 1;
+  }
+}
+
 .section-heading,
 .split-layout,
 .feature-grid,
