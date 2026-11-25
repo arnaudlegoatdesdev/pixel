@@ -59,72 +59,74 @@
           <img src="assets/pixel-logo.png" alt="Pix'el">
         </a>
         <nav class="nav-links" aria-label="Sections du site">
+          <a href="#en-savoir-plus">Présentation</a>
           <a href="#concept">Concept</a>
           <a href="#fonctionnement">Fonctionnement</a>
           <a href="#simulation">Simulation</a>
           <a href="#usages">Usages</a>
-          <a href="#en-savoir-plus">En savoir plus</a>
           <a href="#contact">Contact</a>
         </nav>
         <a class="nav-cta" href="mailto:marketing@pixeloff.net">Nous contacter</a>
       </header>
       <nav class="mobile-nav" aria-label="Navigation mobile">
+        <a href="#en-savoir-plus">Présentation</a>
         <a href="#concept">Concept</a>
         <a href="#fonctionnement">Fonctionnement</a>
         <a href="#simulation">Simulation</a>
         <a href="#usages">Usages</a>
-        <a href="#en-savoir-plus">En savoir plus</a>
         <a href="#contact">Contact</a>
       </nav>
 
       <main id="accueil">
-        <section class="hero section-band dark-band">
-          <video class="hero-video" src="assets/pixel-logo-anim.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
-          <div class="hero-overlay" aria-hidden="true"></div>
-          <div class="line-field" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="hero-content reveal">
-            <p class="eyebrow">Concours Lépine International Paris 2024</p>
-            <h1 class="hero-logo">
-              <img src="assets/pixel-logo.png" alt="Pix'el">
+        <section class="hero section-band dark-band" aria-labelledby="hero-title">
+          <div class="hero-content">
+            <h1 id="hero-title" class="hero-logo">
+              <img src="assets/pixel-logo.png" width="3293" height="817" alt="Pix'el">
             </h1>
-            <p class="tagline">La surface efficace.</p>
-            <p class="hero-copy">
-              Un système flexible et versatile de maintien au chaud ou au froid, pensé pour activer uniquement les zones utiles, détecter les objets posés et piloter chaque module en toute indépendance.
-            </p>
-            <div class="hero-actions" aria-label="Actions principales">
-              <a class="primary-button" href="#concept">Découvrir le concept</a>
-              <a class="secondary-button" href="#contact">Demander des informations</a>
-            </div>
+            <p class="hero-tagline">La surface efficace.</p>
+            <a class="primary-button hero-action" href="#en-savoir-plus"><span class="play-icon" aria-hidden="true"></span>Voir la présentation</a>
           </div>
-          <aside class="award-panel reveal" aria-labelledby="award-title">
-            <div class="award-header">
-              <img class="award-badge" src="assets/concours-lepine-2024.png" alt="Concours Lépine International Paris 2024">
-              <p class="award-event">Concours Lépine<span>International Paris 2024</span></p>
-            </div>
-            <div class="award-body">
-              <h2 id="award-title" class="award-title">Médaille d’or</h2>
-              <p class="award-prize">Prix Léonard de Vinci</p>
-            </div>
-            <p class="award-caption">Décernés par Comexposium au Concours Lépine 2024.</p>
-          </aside>
+          <div class="hero-awards">
+            <h2>
+              <a class="hero-award-link" href="https://www.concours-lepine.com/palmares-edition-2024" target="_blank" rel="noreferrer">
+                <img src="assets/concours-lepine-logo.png" width="1764" height="814" alt="Concours Lépine">
+                <span>International Paris 2024</span>
+              </a>
+            </h2>
+            <ul>
+              <li>Médaille d’or</li>
+              <li>Prix Léonard de Vinci</li>
+            </ul>
+          </div>
         </section>
 
-        <section class="proof-strip" aria-label="Informations clés">
-          <div>
-            <span>2024</span>
-            <p>Concours Lépine International Paris</p>
-          </div>
-          <div>
-            <span>Prix</span>
-            <p>Léonard de Vinci & Médaille d'or</p>
-          </div>
-          <div>
-            <span>Usage</span>
-            <p>Chaud, froid et zones indépendantes</p>
+        <section id="en-savoir-plus" class="section-band light-band video-section" aria-labelledby="video-title">
+          <div class="video-content">
+            <div class="section-heading">
+              <p class="eyebrow">Présentation · 27 s</p>
+              <h2 id="video-title">Une surface à 24 zones en action.</h2>
+            </div>
+            <video class="presentation-video" controls preload="none" playsinline
+              poster="assets/pixel-presentation-affiche.jpg" width="1280" height="720"
+              aria-labelledby="video-title" aria-describedby="video-description">
+              <source src="assets/pixel-presentation-24-zones.mp4" type="video/mp4">
+              <a href="assets/pixel-presentation-24-zones.mp4">Ouvrir la présentation au format MP4</a>
+            </video>
+            <p class="video-description" id="video-description">
+              La surface détecte une boîte à pizza et une canette, puis active le chaud sous l’une et le froid sous l’autre.
+              L’application permet de choisir les zones à activer. Les autres restent au repos.
+            </p>
+            <details class="video-archive">
+              <summary>Voir aussi la démonstration filmée</summary>
+              <div class="video-archive-stage">
+                <video controls preload="none" playsinline
+                  poster="assets/pixel-demonstration-affiche.jpg" width="480" height="848"
+                  aria-label="Démonstration filmée de Pix'el">
+                  <source src="assets/AQOf8qkgLLjm3ac3nl883UOmk_fhjqGCra9UIrJm4IyhjVcFVCxPbrjeTJ_kxSk98dzO2DB698pN6JIkou36LJqX8wnkdl-5-M6vlLxV48QPrg.mp4" type="video/mp4">
+                  Votre navigateur ne prend pas en charge la lecture vidéo.
+                </video>
+              </div>
+            </details>
           </div>
         </section>
 
@@ -262,25 +264,6 @@
             <span>Wi-Fi</span>
             <span>Modules</span>
             <span>Éco-contrôle</span>
-          </div>
-        </section>
-
-        <section id="en-savoir-plus" class="section-band light-band video-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">En savoir plus</p>
-            <h2>Pix'el en vidéo, pour mieux comprendre.</h2>
-            <p class="video-intro">Découvrez en images le fonctionnement.</p>
-          </div>
-          <div class="video-stage reveal">
-            <div class="stage-particles" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span><span></span>
-            </div>
-            <div class="video-wrapper">
-              <video controls preload="metadata" playsinline>
-                <source src="assets/AQOf8qkgLLjm3ac3nl883UOmk_fhjqGCra9UIrJm4IyhjVcFVCxPbrjeTJ_kxSk98dzO2DB698pN6JIkou36LJqX8wnkdl-5-M6vlLxV48QPrg.mp4" type="video/mp4">
-                Votre navigateur ne prend pas en charge la lecture vidéo.
-              </video>
-            </div>
           </div>
         </section>
 

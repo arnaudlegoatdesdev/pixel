@@ -123,6 +123,14 @@ if (simulationGrid) {
   }
 }
 
+const videoArchive = document.querySelector(".video-archive");
+if (videoArchive) {
+  const archivedVideo = videoArchive.querySelector("video");
+  videoArchive.addEventListener("toggle", () => {
+    if (!videoArchive.open) archivedVideo.pause();
+  });
+}
+
 const topbar = document.querySelector(".topbar");
 
 window.addEventListener(
