@@ -20,6 +20,7 @@
     <meta name="twitter:image" content="https://pixeloff.net/assets/pixel-logo.png">
     <title>Pix'el | Surface thermique intelligente chaud froid</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="assets/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-B8XGBJY0KL"></script>
     <script>
@@ -53,66 +54,81 @@
     </script>
   </head>
   <body>
-    <div class="site-shell">
-      <header class="topbar" aria-label="Navigation principale">
-        <a class="brand" href="#accueil" aria-label="Retour à l'accueil Pix'el">
-          <img src="assets/pixel-logo.png" alt="Pix'el">
+    <a class="skip-link" href="#accueil">Aller au contenu</a>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#accueil" aria-label="Pix'el, retour à l'accueil">
+          <img src="assets/pixel-logo.png" width="3293" height="817" alt="Pix'el">
         </a>
-        <nav class="nav-links" aria-label="Sections du site">
+        <nav class="nav" id="site-nav" aria-label="Sections du site">
           <a href="#en-savoir-plus">Présentation</a>
           <a href="#concept">Concept</a>
           <a href="#fonctionnement">Fonctionnement</a>
           <a href="#simulation">Simulation</a>
           <a href="#usages">Usages</a>
-          <a href="#contact">Contact</a>
         </nav>
-        <a class="nav-cta" href="mailto:marketing@pixeloff.net">Nous contacter</a>
-      </header>
-      <nav class="mobile-nav" aria-label="Navigation mobile">
-        <a href="#en-savoir-plus">Présentation</a>
-        <a href="#concept">Concept</a>
-        <a href="#fonctionnement">Fonctionnement</a>
-        <a href="#simulation">Simulation</a>
-        <a href="#usages">Usages</a>
-        <a href="#contact">Contact</a>
-      </nav>
+        <a class="button button-small" href="#contact">Nous contacter</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          <span class="menu-toggle-bars" aria-hidden="true"></span>
+          <span class="visually-hidden">Menu</span>
+        </button>
+      </div>
+    </header>
 
-      <main id="accueil">
-        <section class="hero section-band dark-band" aria-labelledby="hero-title">
-          <div class="hero-pixels" aria-hidden="true"></div>
-          <div class="hero-content">
-            <h1 id="hero-title" class="hero-logo">
-              <img src="assets/pixel-logo.png" width="3293" height="817" alt="Pix'el">
+    <main id="accueil">
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <h1 id="hero-title" class="hero-title">
+              <span class="visually-hidden">Pix'el, </span>La surface efficace.
             </h1>
-            <p class="hero-tagline">La surface efficace.</p>
-            <a class="primary-button hero-action" href="#en-savoir-plus"><span class="play-icon" aria-hidden="true"></span>Voir la présentation</a>
-          </div>
-          <div class="hero-awards">
-            <h2>
-              <a class="hero-award-link" href="https://www.concours-lepine.com/palmares-edition-2024" target="_blank" rel="noreferrer">
-                <img src="assets/concours-lepine-logo.png" width="1764" height="814" alt="Concours Lépine">
-                <span>International Paris 2024</span>
-              </a>
-            </h2>
-            <ul>
-              <li>Médaille d’or</li>
-              <li>Prix Léonard de Vinci</li>
-            </ul>
-          </div>
-        </section>
-
-        <section id="en-savoir-plus" class="section-band light-band video-section" aria-labelledby="video-title">
-          <div class="video-content">
-            <div class="section-heading">
-              <p class="eyebrow">Présentation · 27 s</p>
-              <h2 id="video-title">Une surface à 24 zones en action.</h2>
+            <p class="hero-lede">
+              Pix'el est une surface thermique modulaire. Elle chauffe ou refroidit uniquement les zones où un objet est posé, et laisse le reste au repos.
+            </p>
+            <div class="hero-actions">
+              <a class="button" href="#en-savoir-plus"><span class="play-icon" aria-hidden="true"></span>Voir la présentation</a>
+              <a class="button button-ghost" href="#contact">Nous contacter</a>
             </div>
+
+            <a class="award" href="https://www.concours-lepine.com/palmares-edition-2024" target="_blank" rel="noreferrer">
+              <img class="award-logo" src="assets/concours-lepine-logo.png" width="1764" height="814" alt="Concours Lépine">
+              <span class="award-text">
+                <strong>Médaille d’or et Prix Léonard de Vinci</strong>
+                <span>Concours Lépine International Paris 2024</span>
+              </span>
+            </a>
+          </div>
+
+          <figure class="hero-surface" aria-label="Animation : une surface Pix'el de 24 pixels active le chaud sous un plat et le froid sous une boisson">
+            <div class="surface-frame">
+              <div class="surface" data-cols="6" data-rows="4" aria-hidden="true"></div>
+            </div>
+            <figcaption class="surface-readout" aria-live="off">
+              <span class="readout-count"><strong data-readout-active>5</strong> pixels actifs sur 24</span>
+              <span class="readout-note">Les <span data-readout-idle>19</span> autres ne consomment rien.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Présentation vidéo -->
+      <section id="en-savoir-plus" class="section section-video" aria-labelledby="video-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="kicker">Présentation vidéo, 27 secondes</p>
+            <h2 id="video-title">Une surface à 24 zones en action.</h2>
+          </header>
+          <div class="video-frame">
             <video class="presentation-video" controls preload="none" playsinline
               poster="assets/pixel-presentation-affiche.jpg" width="1280" height="720"
               aria-labelledby="video-title" aria-describedby="video-description">
               <source src="assets/pixel-presentation-24-zones.mp4" type="video/mp4">
               <a href="assets/pixel-presentation-24-zones.mp4">Ouvrir la présentation au format MP4</a>
             </video>
+          </div>
+          <div class="video-meta">
             <p class="video-description" id="video-description">
               La surface détecte une boîte à pizza et une canette, puis active le chaud sous l’une et le froid sous l’autre.
               L’application permet de choisir les zones à activer. Les autres restent au repos.
@@ -129,163 +145,250 @@
               </div>
             </details>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="concept" class="section-band light-band concept-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Qu'est-ce qu'un Pix'el ?</p>
-            <h2>Une surface thermique intelligente, zone par zone.</h2>
+      <!-- Concept + En bref -->
+      <section id="concept" class="section section-concept" aria-labelledby="concept-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="kicker">Qu'est-ce qu'un Pix'el ?</p>
+            <h2 id="concept-title">Une surface thermique intelligente, zone par zone.</h2>
+          </header>
+          <div class="concept-copy">
+            <p>
+              Pix'el est un système flexible de maintien au chaud ou au froid. Il s'active en présence d'un objet à réchauffer ou à refroidir, peu importe sa matière.
+            </p>
+            <p>
+              Chaque module fonctionne de manière indépendante et peut être associé à d'autres modules identiques, afin de composer une surface adaptée au contexte.
+            </p>
           </div>
-          <div class="split-layout">
-            <div class="copy-stack reveal">
-              <p>
-                Pix'el est un système flexible de maintien au chaud ou au froid pouvant s'activer en présence d'un objet à réchauffer ou à refroidir, peu importe sa matière.
-              </p>
-              <p>
-                Chaque module fonctionne de manière indépendante et peut être associé à d'autres modules identiques afin de composer une surface adaptée au contexte.
-              </p>
-            </div>
-            <div class="surface-visual reveal" aria-hidden="true">
-              <div class="thermal-grid">
-                <span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span>
+
+          <h3 class="pillars-title">Une technologie pensée pour consommer juste.</h3>
+          <ul class="pillars">
+            <li class="pillar">
+              <span class="glyph glyph-innovation" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <h4>Innovation</h4>
+              <p>Pix'el s'active par zones indépendantes et détecte automatiquement les objets, afin de chauffer ou refroidir uniquement ce qui doit l'être.</p>
+            </li>
+            <li class="pillar">
+              <span class="glyph glyph-eco" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <h4>Éco-contrôle</h4>
+              <p>Le système fonctionne lorsque c'est nécessaire. Les zones inutilisées restent inactives, pour ne pas alimenter toute une surface inutilement.</p>
+            </li>
+            <li class="pillar">
+              <span class="glyph glyph-modular" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+              <h4>Modularité</h4>
+              <p>Les modules se combinent entre eux pour former une plaque plus grande, tout en conservant un fonctionnement indépendant.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Fonctionnement -->
+      <section id="fonctionnement" class="section section-paper" aria-labelledby="detail-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="kicker">En détails</p>
+            <h2 id="detail-title">La simplicité en façade, la précision sous la surface.</h2>
+          </header>
+          <div class="anatomy">
+            <figure class="anatomy-figure">
+              <svg viewBox="-200 -250 640 470" role="img" aria-labelledby="anatomy-desc">
+                <desc id="anatomy-desc">Vue éclatée d'un pixel : la plaque de diffusion au-dessus du module à semi-conducteurs, qui intègre le détecteur de présence et la connexion Wi-Fi.</desc>
+                <!-- guides -->
+                <g class="an-guide">
+                  <line x1="173.2" y1="-110" x2="173.2" y2="78"/>
+                  <line x1="-173.2" y1="-110" x2="-173.2" y2="78"/>
+                </g>
+                <!-- module -->
+                <g class="an-module">
+                  <polygon class="an-side-a" points="-173.2,78 0,178 0,200 -173.2,100"/>
+                  <polygon class="an-side-b" points="173.2,78 0,178 0,200 173.2,100"/>
+                  <polygon class="an-top" points="0,-22 173.2,78 0,178 -173.2,78"/>
+                  <g class="an-cells">
+                    <polygon points="0.0,2.0 26.4,17.3 0.0,32.5 -26.4,17.3"/>
+                    <polygon points="-35.1,22.3 -8.7,37.5 -35.1,52.8 -61.5,37.5"/>
+                    <polygon points="-70.1,42.5 -43.7,57.8 -70.1,73.0 -96.6,57.8"/>
+                    <polygon points="-105.2,62.8 -78.8,78.0 -105.2,93.3 -131.6,78.0"/>
+                    <polygon points="35.1,22.3 61.5,37.5 35.1,52.8 8.7,37.5"/>
+                    <polygon class="is-hot" points="0.0,42.5 26.4,57.8 0.0,73.0 -26.4,57.8"/>
+                    <polygon class="is-hot" points="-35.1,62.8 -8.7,78.0 -35.1,93.3 -61.5,78.0"/>
+                    <polygon points="-70.1,83.0 -43.7,98.3 -70.1,113.5 -96.6,98.3"/>
+                    <polygon points="70.1,42.5 96.6,57.8 70.1,73.0 43.7,57.8"/>
+                    <polygon class="is-hot" points="35.1,62.8 61.5,78.0 35.1,93.3 8.7,78.0"/>
+                    <polygon points="0.0,83.0 26.4,98.3 0.0,113.5 -26.4,98.3"/>
+                    <polygon points="-35.1,103.3 -8.7,118.5 -35.1,133.8 -61.5,118.5"/>
+                    <polygon points="105.2,62.8 131.6,78.0 105.2,93.3 78.8,78.0"/>
+                    <polygon class="is-cold" points="70.1,83.0 96.6,98.3 70.1,113.5 43.7,98.3"/>
+                    <polygon points="35.1,103.3 61.5,118.5 35.1,133.8 8.7,118.5"/>
+                    <polygon points="0.0,123.5 26.4,138.8 0.0,154.0 -26.4,138.8"/>
+                  </g>
+                  <!-- presence sensor on the right face -->
+                  <g class="an-sensor">
+                    <circle cx="52" cy="160" r="4"/>
+                    <circle class="an-sensor-ring" cx="52" cy="160" r="9"/>
+                  </g>
+                </g>
+                <!-- wifi -->
+                <g class="an-wifi">
+                  <path d="M 150 104 a 14 14 0 0 1 0 22"/>
+                  <path d="M 158 96 a 24 24 0 0 1 0 38"/>
+                  <path d="M 166 88 a 34 34 0 0 1 0 54"/>
+                </g>
+                <!-- plate -->
+                <g class="an-plate">
+                  <polygon class="an-side-a" points="-173.2,-118 0,-18 0,-10 -173.2,-110"/>
+                  <polygon class="an-side-b" points="173.2,-118 0,-18 0,-10 173.2,-110"/>
+                  <polygon class="an-top" points="0,-218 173.2,-118 0,-18 -173.2,-118"/>
+                </g>
+                <!-- leaders + labels -->
+                <g class="an-leader">
+                  <polyline points="120,-148 214,-148"/>
+                  <polyline points="110,36 214,36"/>
+                  <polyline points="182,115 214,115"/>
+                  <polyline points="60,160 120,184 214,184"/>
+                  <circle cx="120" cy="-148" r="3"/>
+                  <circle cx="110" cy="36" r="3"/>
+                  <circle cx="60" cy="160" r="3"/>
+                </g>
+                <g class="an-label">
+                  <text x="224" y="-143">Plaque de diffusion</text>
+                  <text x="224" y="41">Module à semi-conducteurs</text>
+                  <text x="224" y="120">Wi-Fi</text>
+                  <text x="224" y="189">Détecteur de présence</text>
+                </g>
+              </svg>
+            </figure>
+
+            <dl class="spec-list">
+              <div class="spec">
+                <dt>Plaque de diffusion</dt>
+                <dd>Une plaque en matériau conducteur thermique.</dd>
+              </div>
+              <div class="spec">
+                <dt>Module à semi-conducteurs</dt>
+                <dd>Piloté par microprocesseur, fixé directement sous la plaque.</dd>
+              </div>
+              <div class="spec">
+                <dt>Détecteur de présence</dt>
+                <dd>Intégré au module thermostat, il repère l'objet posé sur la surface.</dd>
+              </div>
+              <div class="spec">
+                <dt>Application Wi-Fi</dt>
+                <dd>Plusieurs modes de fonctionnement, commandables à distance.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <!-- Simulation -->
+      <section id="simulation" class="section section-sim" aria-labelledby="sim-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="kicker">Simulation</p>
+            <h2 id="sim-title">Composez votre propre surface thermique.</h2>
+            <p class="section-intro">Choisissez un mode, puis cliquez ou glissez sur les pixels pour activer des zones chaudes ou froides. Vous pouvez mélanger les deux sur la même surface.</p>
+          </header>
+
+          <div class="sim">
+            <div class="sim-panel">
+              <div class="sim-toolbar">
+                <div class="sim-modes" role="group" aria-label="Mode d'activation">
+                  <button type="button" class="sim-mode is-active" data-mode="hot" aria-pressed="true">
+                    <span class="dot dot-hot" aria-hidden="true"></span>Chaud
+                  </button>
+                  <button type="button" class="sim-mode" data-mode="cold" aria-pressed="false">
+                    <span class="dot dot-cold" aria-hidden="true"></span>Froid
+                  </button>
+                  <button type="button" class="sim-mode" data-mode="erase" aria-pressed="false">
+                    <span class="dot dot-off" aria-hidden="true"></span>Effacer
+                  </button>
+                </div>
+                <button type="button" class="sim-reset">Réinitialiser</button>
+              </div>
+              <div class="sim-grid" data-mode="hot" role="group" aria-label="Surface interactive Pix'el, 32 pixels"></div>
+              <div class="sim-status" aria-live="polite">
+                <span><strong data-sim-hot>0</strong> <span data-sim-hot-label>chaud</span></span>
+                <span><strong data-sim-cold>0</strong> <span data-sim-cold-label>froid</span></span>
+                <span><strong data-sim-idle>32</strong> au repos, sans consommation</span>
               </div>
             </div>
-          </div>
-        </section>
 
-        <section class="section-band dark-band brief-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">En bref</p>
-            <h2>Une technologie pensée pour consommer juste.</h2>
-          </div>
-          <div class="feature-grid">
-            <article class="feature-card reveal">
-              <span class="feature-icon">01</span>
-              <h3>Innovation</h3>
-              <p>
-                Pix'el s'active par zones indépendantes et détecte automatiquement les objets afin de chauffer ou refroidir uniquement ce qui doit l'être.
-              </p>
-            </article>
-            <article class="feature-card reveal">
-              <span class="feature-icon">02</span>
-              <h3>Éco-contrôle</h3>
-              <p>
-                Le système fonctionne lorsque c'est nécessaire. Certaines zones peuvent rester inactives, pour éviter d'alimenter toute une surface inutilement.
-              </p>
-            </article>
-            <article class="feature-card reveal">
-              <span class="feature-icon">03</span>
-              <h3>Modularité</h3>
-              <p>
-                Les modules peuvent être combinés entre eux pour former une plaque plus grande, tout en conservant un fonctionnement indépendant.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section id="fonctionnement" class="section-band light-band detail-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">En détails</p>
-            <h2>La simplicité en façade, la précision sous la surface.</h2>
-          </div>
-          <div class="detail-list">
-            <article class="detail-item reveal">
-              <img src="assets/icon-thermometer.png" alt="">
-              <p>Une plaque de diffusion en matériau conducteur thermique.</p>
-            </article>
-            <article class="detail-item reveal">
-              <img src="assets/icon-module.png" alt="">
-              <p>Un module à semi-conducteurs piloté par microprocesseur, fixé directement sous la plaque.</p>
-            </article>
-            <article class="detail-item reveal">
-              <img src="assets/icon-presence.png" alt="">
-              <p>Un détecteur de présence d'objet intégré au module thermostat.</p>
-            </article>
-            <article class="detail-item reveal">
-              <img src="assets/icon-wifi.png" alt="">
-              <p>Plusieurs modes de fonctionnement commandables via une application Wi-Fi.</p>
-            </article>
-          </div>
-        </section>
-
-        <section id="simulation" class="section-band dark-band simulation-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Simulation</p>
-            <h2>Composez votre propre surface thermique.</h2>
-            <p class="simulation-intro">Choisissez un mode, puis cliquez ou glissez sur les pixels pour activer des zones chaudes ou froides. Vous pouvez mélanger les deux sur la même surface.</p>
-          </div>
-          <div class="simulation-layout">
-            <div class="simulation-stage reveal">
-              <div class="simulation-grid" data-mode="hot" aria-label="Surface interactive Pix'el"></div>
-              <p class="simulation-hint">Astuce : cliquez ou maintenez et glissez pour peindre plusieurs pixels.</p>
-            </div>
-            <div class="simulation-side reveal">
-              <div class="simulation-modes" role="group" aria-label="Mode d'activation">
-                <button type="button" class="sim-mode is-active" data-mode="hot">
-                  <span class="sim-dot hot"></span>Chaud
-                </button>
-                <button type="button" class="sim-mode" data-mode="cold">
-                  <span class="sim-dot cold"></span>Froid
-                </button>
-                <button type="button" class="sim-mode" data-mode="erase">
-                  <span class="sim-dot off"></span>Effacer
-                </button>
-              </div>
-              <button type="button" class="sim-reset">Réinitialiser la surface</button>
-              <div class="simulation-explain">
-                <h3>Comment ça marche ?</h3>
-                <p>Chaque pixel est un module indépendant : il peut chauffer, refroidir, ou rester inactif. La surface s'adapte à votre besoin sans dépenser d'énergie pour les zones non utilisées.</p>
-                <ul>
-                  <li><span class="sim-dot hot"></span> Une zone chaude maintient un plat ou une tasse à bonne température.</li>
-                  <li><span class="sim-dot cold"></span> Une zone froide rafraîchit boissons, desserts et entrées.</li>
-                  <li><span class="sim-dot off"></span> Un pixel éteint ne consomme rien.</li>
-                </ul>
-                <p class="simulation-note">Sur un vrai Pix'el, la détection de présence active les zones automatiquement dès qu'un objet y est posé, et une application mobile permet de piloter la surface à distance. Les espaces entre les pixels sont aussi bien plus fins qu'ici.</p>
-              </div>
+            <div class="sim-explain">
+              <h3>Comment ça marche ?</h3>
+              <p>Chaque pixel est un module indépendant : il peut chauffer, refroidir, ou rester inactif. La surface s'adapte à votre besoin sans dépenser d'énergie pour les zones non utilisées.</p>
+              <ul class="legend">
+                <li><span class="dot dot-hot" aria-hidden="true"></span>Une zone chaude maintient un plat ou une tasse à bonne température.</li>
+                <li><span class="dot dot-cold" aria-hidden="true"></span>Une zone froide rafraîchit boissons, desserts et entrées.</li>
+                <li><span class="dot dot-off" aria-hidden="true"></span>Un pixel éteint ne consomme rien.</li>
+              </ul>
+              <p class="sim-note">Sur un vrai Pix'el, la détection de présence active les zones automatiquement dès qu'un objet y est posé, et une application mobile permet de piloter la surface à distance. Les espaces entre les pixels sont aussi bien plus fins qu'ici.</p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="usages" class="section-band dark-band uses-section">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Applications</p>
-            <h2>Pour les lieux qui doivent garder le bon produit à la bonne température.</h2>
+      <!-- Usages -->
+      <section id="usages" class="section section-uses" aria-labelledby="uses-title">
+        <div class="container">
+          <header class="section-head">
+            <p class="kicker">Applications</p>
+            <h2 id="uses-title">Pour les lieux qui doivent garder le bon produit à la bonne température.</h2>
+          </header>
+          <div class="uses">
+            <div class="use-group">
+              <h3>Professionnels</h3>
+              <ul>
+                <li>Buffets et comptoirs</li>
+                <li>Restauration et hôtellerie</li>
+                <li>Traiteurs et événements</li>
+                <li>Cuisines professionnelles</li>
+                <li>Espaces de présentation</li>
+              </ul>
+            </div>
+            <div class="use-group">
+              <h3>Particuliers</h3>
+              <ul>
+                <li>Comptoir intelligent à la maison</li>
+                <li>Plan de travail réactif</li>
+              </ul>
+            </div>
+            <p class="uses-statement">
+              Pix'el ouvre la voie à des surfaces réactives, chauffantes et rafraîchissantes à volonté, capables de s'adapter à des besoins très différents sans multiplier les équipements.
+            </p>
           </div>
-          <div class="use-columns reveal">
-            <p>Buffets, comptoirs, restauration, hôtellerie, traiteurs, événements, cuisines professionnelles, espaces de présentation, mais aussi usages grand public comme un comptoir intelligent à la maison.</p>
-            <p>Pix'el ouvre la voie à des surfaces réactives, chauffantes et rafraîchissantes à volonté, capables de s'adapter à des besoins très différents sans multiplier les équipements.</p>
-          </div>
-          <div class="ticker" aria-hidden="true">
-            <span>Chaud</span>
-            <span>Froid</span>
-            <span>Présence</span>
-            <span>Wi-Fi</span>
-            <span>Modules</span>
-            <span>Éco-contrôle</span>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="contact" class="section-band contact-section">
-          <div class="contact-content reveal">
-            <p class="eyebrow">Contact</p>
-            <h2>Vous voulez en savoir plus sur Pix'el ?</h2>
+      <!-- Contact -->
+      <section id="contact" class="section section-contact" aria-labelledby="contact-title">
+        <div class="container contact">
+          <div class="contact-copy">
+            <p class="kicker">Contact</p>
+            <h2 id="contact-title">Vous voulez en savoir plus sur Pix'el ?</h2>
             <p>
               Imaginé et développé par David Flion, Pix'el est aujourd'hui présenté aux professionnels, aux partenaires et aux personnes curieuses de découvrir cette surface intelligente.
             </p>
-            <div class="contact-actions">
-              <a class="primary-button" href="mailto:marketing@pixeloff.net">marketing@pixeloff.net</a>
-            </div>
           </div>
-          <footer class="site-footer">
-            <p>Pix'el, la surface efficace.</p>
-            <a href="https://www.concours-lepine.com/palmares-edition-2024" target="_blank" rel="noreferrer">Palmarès officiel Concours Lépine 2024</a>
-          </footer>
-        </section>
-      </main>
-    </div>
+          <div class="contact-card">
+            <p class="contact-label">Écrivez-nous</p>
+            <a class="contact-email" href="mailto:marketing@pixeloff.net">marketing@pixeloff.net</a>
+            <a class="button" href="mailto:marketing@pixeloff.net">Envoyer un e-mail</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <img class="footer-logo" src="assets/pixel-logo.png" width="3293" height="817" alt="Pix'el">
+        <p>La surface efficace.</p>
+        <a href="https://www.concours-lepine.com/palmares-edition-2024" target="_blank" rel="noreferrer">Palmarès officiel Concours Lépine 2024</a>
+      </div>
+    </footer>
+
     <script src="script.js"></script>
   </body>
 </html>
