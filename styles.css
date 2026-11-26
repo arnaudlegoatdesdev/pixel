@@ -65,7 +65,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + 24px);
+  scroll-padding-top: calc(var(--header-h) + 20px);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -567,6 +567,17 @@ h4 {
 .section {
   padding-block: var(--section-y);
   border-top: 1px solid var(--line);
+}
+
+/* Lien vers une section : on saute l'espace vide du haut de section,
+   le titre arrive juste sous l'en-tête. */
+.section[id] {
+  scroll-margin-top: calc(8px - var(--section-y));
+}
+
+/* « Voir la présentation » : la vidéo entière sous l'en-tête. */
+.video-frame {
+  scroll-margin-top: 0;
 }
 
 /* Vidéo */
