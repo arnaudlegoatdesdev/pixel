@@ -223,7 +223,11 @@ h4 {
   font-size: 0.98rem;
   font-weight: 600;
   white-space: nowrap;
-  transition: background 200ms var(--ease), border-color 200ms var(--ease), color 200ms var(--ease);
+  transition:
+    background 200ms var(--ease),
+    border-color 200ms var(--ease),
+    color 200ms var(--ease),
+    transform 160ms var(--ease);
 }
 
 .button:hover {
@@ -466,24 +470,43 @@ h4 {
 }
 
 .cell {
+  position: relative;
   aspect-ratio: 1;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(183, 227, 232, 0.13);
   transition:
-    background 900ms var(--ease),
-    border-color 900ms var(--ease),
-    box-shadow 900ms var(--ease);
+    border-color 1200ms var(--ease),
+    box-shadow 1400ms var(--ease);
+}
+
+/* La couleur vit sur un calque qui monte en fondu : les dégradés ne se
+   transitionnent pas, l'opacité si. */
+.cell::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 1200ms var(--ease);
+}
+
+.cell.is-hot::before {
+  background: radial-gradient(circle at 50% 42%, #ff6b4f, var(--hot) 58%, #c9160e);
+  opacity: 1;
+}
+
+.cell.is-cold::before {
+  background: radial-gradient(circle at 50% 42%, #4fb0ff, var(--cold) 58%, #0062c4);
+  opacity: 1;
 }
 
 .cell.is-hot {
-  background: radial-gradient(circle at 50% 42%, #ff6b4f, var(--hot) 58%, #c9160e);
   border-color: rgba(255, 170, 150, 0.6);
   box-shadow: 0 0 28px var(--hot-glow);
 }
 
 .cell.is-cold {
-  background: radial-gradient(circle at 50% 42%, #4fb0ff, var(--cold) 58%, #0062c4);
   border-color: rgba(150, 200, 255, 0.6);
   box-shadow: 0 0 28px var(--cold-glow);
 }
@@ -912,7 +935,11 @@ h4 {
   font-size: 0.92rem;
   font-weight: 540;
   cursor: pointer;
-  transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+  transition:
+    background 180ms var(--ease),
+    color 180ms var(--ease),
+    border-color 180ms var(--ease),
+    transform 140ms var(--ease);
 }
 
 .sim-mode:hover {
@@ -1153,6 +1180,183 @@ h4 {
 
 .footer-inner a:hover {
   color: var(--white);
+}
+
+/* ---------- Mouvement ---------- */
+
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Retour au clic */
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:active,
+.sim-mode:active,
+.sim-reset:active,
+.menu-toggle:active,
+.video-archive summary:active {
+  transform: scale(0.97);
+}
+
+.sim-cell:active {
+  transform: scale(0.92);
+}
+
+.sim-cell {
+  transition:
+    background 360ms var(--ease),
+    border-color 360ms var(--ease),
+    box-shadow 360ms var(--ease),
+    transform 160ms var(--ease);
+}
+
+/* Un pixel qui s'allume « respire » une fois */
+.sim-cell.is-hot {
+  animation: cell-on-hot 520ms var(--ease-out);
+}
+
+.sim-cell.is-cold {
+  animation: cell-on-cold 520ms var(--ease-out);
+}
+
+@keyframes cell-on-hot {
+  0% { transform: scale(0.86); filter: brightness(1.5); }
+  100% { transform: none; filter: none; }
+}
+
+@keyframes cell-on-cold {
+  0% { transform: scale(0.86); filter: brightness(1.5); }
+  100% { transform: none; filter: none; }
+}
+
+/* Lien de navigation de la section en cours */
+@media (min-width: 981px) {
+  .nav a {
+    position: relative;
+    padding-block: 6px;
+  }
+
+  .nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.5px;
+    border-radius: 1px;
+    background: var(--cyan-soft);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 360ms var(--ease-out);
+  }
+
+  .nav a:hover::after,
+  .nav a.is-current::after {
+    transform: scaleX(1);
+  }
+}
+
+.nav a.is-current {
+  color: var(--white);
+}
+
+/* Menu mobile : glisse depuis l'en-tête */
+@media (max-width: 980px) {
+  .topbar.is-open .nav {
+    animation: menu-in 320ms var(--ease-out);
+  }
+}
+
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Vidéo d'archive : apparaît en douceur à l'ouverture */
+.video-archive[open] .video-archive-stage {
+  animation: fade-up 480ms var(--ease-out);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Apparition au défilement. Sans JavaScript, ou avec « réduire les
+   animations », tout reste visible. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 900ms var(--ease-out),
+      transform 1000ms var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .js [data-reveal="scale"] {
+    transform: translateY(28px) scale(0.97);
+  }
+
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Vue éclatée : la plaque se soulève du module, puis les légendes arrivent */
+  .js [data-reveal="explode"] {
+    transform: none;
+  }
+
+  .js [data-reveal="explode"] .an-plate {
+    transform: translateY(150px);
+    transition: transform 1400ms var(--ease-out) 200ms;
+  }
+
+  .js [data-reveal="explode"] .an-guide,
+  .js [data-reveal="explode"] .an-leader,
+  .js [data-reveal="explode"] .an-label {
+    opacity: 0;
+    transition: opacity 700ms var(--ease) 1200ms;
+  }
+
+  .js [data-reveal="explode"] .an-wifi path {
+    opacity: 0;
+    transition: opacity 500ms var(--ease);
+  }
+
+  .js [data-reveal="explode"].is-visible .an-plate {
+    transform: none;
+  }
+
+  .js [data-reveal="explode"].is-visible .an-guide,
+  .js [data-reveal="explode"].is-visible .an-leader,
+  .js [data-reveal="explode"].is-visible .an-label {
+    opacity: 1;
+  }
+
+  .js [data-reveal="explode"].is-visible .an-wifi path {
+    opacity: 1;
+  }
+
+  .js [data-reveal="explode"].is-visible .an-wifi path:nth-child(1) { transition-delay: 1300ms; }
+  .js [data-reveal="explode"].is-visible .an-wifi path:nth-child(2) { transition-delay: 1450ms; }
+  .js [data-reveal="explode"].is-visible .an-wifi path:nth-child(3) { transition-delay: 1600ms; }
+
+  /* Le capteur émet une onde discrète */
+  .an-sensor-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: sensor-ping 2.8s var(--ease) infinite;
+  }
+
+  @keyframes sensor-ping {
+    0%, 40% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
 }
 
 /* ---------- Responsive ---------- */

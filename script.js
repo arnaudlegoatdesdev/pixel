@@ -118,13 +118,10 @@ if (surface) {
         objects.push(el);
         requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add("is-placed")));
         await wait(650);
-        cellsUnder(obj).forEach((cell, i) => {
-          setTimeout(() => {
-            cell.classList.add(`is-${obj.mode}`);
-            updateReadout();
-          }, i * 90);
-        });
-        await wait(1100);
+        // Tous les pixels sous l'objet s'allument ensemble, en fondu.
+        cellsUnder(obj).forEach((cell) => cell.classList.add(`is-${obj.mode}`));
+        updateReadout();
+        await wait(1500);
       }
 
       await wait(3200);
@@ -134,7 +131,7 @@ if (surface) {
       await wait(500);
       cells.forEach((cell) => cell.classList.remove("is-hot", "is-cold"));
       updateReadout();
-      await wait(800);
+      await wait(1300);
       objects.forEach((el) => el.remove());
       await wait(500);
       index++;
@@ -235,12 +232,16 @@ if (simGrid) {
   window.addEventListener("pointerup", stopPainting);
   window.addEventListener("pointercancel", stopPainting);
 
+  // Réinitialiser : la surface s'éteint en vague, de gauche à droite.
   document.querySelector(".sim-reset")?.addEventListener("click", () => {
+    const stagger = reducedMotion.matches ? 0 : 35;
     simCells.forEach((c, i) => {
-      c.classList.remove("is-hot", "is-cold");
-      c.setAttribute("aria-label", `Pixel ${i + 1}, éteint`);
+      setTimeout(() => {
+        c.classList.remove("is-hot", "is-cold");
+        c.setAttribute("aria-label", `Pixel ${i + 1}, éteint`);
+        updateStatus();
+      }, (i % COLS) * stagger);
     });
-    updateStatus();
   });
 }
 
@@ -252,4 +253,73 @@ if (videoArchive) {
   videoArchive.addEventListener("toggle", () => {
     if (!videoArchive.open) archivedVideo.pause();
   });
+}
+
+/* ---------- Apparition au défilement ---------- */
+
+const revealItems = document.querySelectorAll("[data-reveal]");
+
+if (revealItems.length) {
+  // Les éléments voisins arrivent l'un après l'autre.
+  revealItems.forEach((el) => {
+    const siblings = [...el.parentElement.children].filter((child) => child.hasAttribute("data-reveal"));
+    const index = siblings.indexOf(el);
+    if (index > 0) el.style.setProperty("--reveal-delay", `${Math.min(index, 5) * 110}ms`);
+  });
+
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    );
+    revealItems.forEach((el) => revealObserver.observe(el));
+  } else {
+    revealItems.forEach((el) => el.classList.add("is-visible"));
+  }
+}
+
+/* ---------- Menu : lien de la section en cours ---------- */
+
+const navLinks = [...document.querySelectorAll(".nav a")];
+
+if (navLinks.length && "IntersectionObserver" in window) {
+  const sections = navLinks
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+          const current = link.getAttribute("href") === `#${entry.target.id}`;
+          link.classList.toggle("is-current", current);
+          if (current) link.setAttribute("aria-current", "true");
+          else link.removeAttribute("aria-current");
+        });
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  sections.forEach((section) => sectionObserver.observe(section));
+
+  // Retour en haut de page : plus aucun lien actif.
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (window.scrollY < window.innerHeight * 0.5) {
+        navLinks.forEach((link) => {
+          link.classList.remove("is-current");
+          link.removeAttribute("aria-current");
+        });
+      }
+    },
+    { passive: true }
+  );
 }
